@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,9 +15,23 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TwitterLogoBlue" translatesAutoresizingMaskIntoConstraints="NO" id="d9R-4d-uhl">
+                                <rect key="frame" x="0.0" y="244.66666666666663" width="375" height="323"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="323" id="8gL-MQ-lBx"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="d9R-4d-uhl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="dzW-nn-Yy9"/>
+                            <constraint firstItem="d9R-4d-uhl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="eBP-a0-5TU"/>
+                            <constraint firstItem="d9R-4d-uhl" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="mFN-Wd-a13"/>
+                            <constraint firstItem="d9R-4d-uhl" firstAttribute="trailing" secondItem="Bcu-3y-fUS" secondAttribute="trailing" id="rJ0-k4-LCS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                     </view>
                 </viewController>
@@ -26,4 +40,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="TwitterLogoBlue" width="400" height="400"/>
+    </resources>
 </document>
