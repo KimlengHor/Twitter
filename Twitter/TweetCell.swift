@@ -15,6 +15,31 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var userNameLbl: UILabel!
     @IBOutlet weak var tweetLbl: UILabel!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var favButton: UIButton!
+    
+    var favourited = false
+    var tweetId = -1
+    var retweeted = false
+    
+    func setFavourite(_ isFavorited: Bool) {
+        favourited = isFavorited
+        if(favourited) {
+            favButton.setImage(#imageLiteral(resourceName: "favor-icon-red").withRenderingMode(.alwaysOriginal), for: .normal)
+        } else {
+            favButton.setImage(#imageLiteral(resourceName: "favor-icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+    }
+    
+    func setRetweeted(_ isRetweeted: Bool) {
+        if (isRetweeted) {
+            retweetButton.setImage(#imageLiteral(resourceName: "retweet-icon-green").withRenderingMode(.alwaysOriginal), for: .normal)
+            retweetButton.isEnabled = false
+        } else {
+            retweetButton.setImage(#imageLiteral(resourceName: "retweet-icon").withRenderingMode(.alwaysOriginal), for: .normal)
+            retweetButton.isEnabled = true
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,5 +61,31 @@ class TweetCell: UITableViewCell {
         }
         tweetLbl.text = tweetArray[index]["text"] as? String
     }
-
+    
+    //Actions
+    @IBAction func retweetButtonPressed(_ sender: Any) {
+        TwitterAPICaller.client?.retweet(tweetId: tweetId, success: {
+            self.setRetweeted(true)
+        }, failure: { (error) in
+            print(error)
+        })
+    }
+    
+    @IBAction func favButtonPressed(_ sender: Any) {
+        let tobeFavourited = !favourited
+        if (tobeFavourited) {
+            TwitterAPICaller.client?.favouriteTweet(tweetId: tweetId, success: {
+                self.setFavourite(true)
+            }, failure: { (error) in
+                print(error)
+            })
+        } else {
+            TwitterAPICaller.client?.unfavouriteTweet(tweetId: tweetId, success: {
+                self.setFavourite(false)
+            }, failure: { (error) in
+                print(error)
+            })
+        }
+    }
 }
+
